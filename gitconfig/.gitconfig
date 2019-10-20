@@ -1,0 +1,62 @@
+[user]
+	email = _________
+	name = _________
+
+[core]
+	editor = vim
+
+[color]
+	ui = true
+
+[alias]
+	# Add
+	a = add
+	
+	# Checkout
+	co = checkout
+	com = checkout master
+	cod = checkout dev
+	cob = checkout -b
+
+	# Merge
+	m = merge
+	ms = merge --squash
+	ma = merge --abort
+	mnn = merge --no-ff --no-commit
+	
+	# Commit
+	c = commit
+	ac = commit -a
+	ca = commit --amend
+	cm = commit -m
+	acm = commit -am
+	aca = commit --amend
+	cam = commit --amend -m
+	aca = commit --amend -a
+	acam = commit --amend -am
+	
+	# Diff
+	d = diff
+	dc = diff --cached
+	df = diff --name-only
+	
+	# push
+	p = !git push origin $(git rev-parse --abbrev-ref HEAD):$(git rev-parse --abbrev-ref HEAD)
+	pa = push --all
+	pl = !git pull origin $(git rev-parse --abbrev-ref HEAD):$(git rev-parse --abbrev-ref HEAD)
+	
+	# fetch
+	f = !git fetch origin $(git rev-parse --abbrev-ref HEAD):$(git rev-parse --abbrev-ref HEAD)
+	fa = fetch --all
+	
+	# Status
+	s = status
+	
+	# Cherry pick
+	cp = cherry-pick
+	cpn = cherry-pick --no-commit
+	
+	# Branch
+	b = branch
+	bd = branch -v --sort=-committerdate
+	bdd = branch -v --sort=committerdate
