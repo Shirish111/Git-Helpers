@@ -60,3 +60,27 @@
 	b = branch
 	bd = branch -v --sort=-committerdate
 	bdd = branch -v --sort=committerdate
+	br = branch -m
+	bdel = branch -d
+	bdelf = branch -D
+	bdelrem = !git push origin --delete 
+
+	# Reset
+	r = reset
+	rs = reset --soft
+	rh = reset --hard
+
+	# Clean
+	cl = clean -f
+	cld = clean -fd
+	
+	# Stash
+	stp = stash push
+	sta = stash apply
+	stpop = stash pop
+	sts = stash show -p
+	stsf = stash show
+	stl = stash list
+
+	# Reflog
+	rf = reflog
