@@ -11,7 +11,17 @@
 [alias]
 	# Add
 	a = add
-	
+
+	# Branch
+	b = branch
+	bd = branch -v --sort=-committerdate
+	bdd = branch -v --sort=committerdate
+	br = branch -m
+	bdel = branch -d
+	bdelf = branch -D
+	bdelrem = !git push origin --delete
+	cb = branch --show-current
+
 	# Checkout
 	co = checkout
 	com = checkout master
@@ -34,6 +44,7 @@
 	cam = commit --amend -m
 	aca = commit --amend -a
 	acam = commit --amend -am
+	cem = commit --allow-empty -m
 	
 	# Diff
 	d = diff
@@ -42,14 +53,14 @@
 	dcf = diff --cached --name-only
 	
 	# push
-	p = !git push origin $(git rev-parse --abbrev-ref HEAD):$(git rev-parse --abbrev-ref HEAD)
-	pf = !git push origin -f $(git rev-parse --abbrev-ref HEAD):$(git rev-parse --abbrev-ref HEAD)
+	p = !git push origin $(git cb):$(git cb)
+	pf = !git push origin -f $(git cb):$(git cb)
 	pa = push --all
-	pl = !git pull origin $(git rev-parse --abbrev-ref HEAD):$(git rev-parse --abbrev-ref HEAD)
-	plf = !git pull origin -f $(git rev-parse --abbrev-ref HEAD):$(git rev-parse --abbrev-ref HEAD)
+	pl = !git pull origin $(git cb):$(git cb)
+	plf = !git pull origin -f $(git cb):$(git cb)
 	
 	# fetch
-	f = !git fetch origin $(git rev-parse --abbrev-ref HEAD):$(git rev-parse --abbrev-ref HEAD)
+	f = !git fetch origin $(git cb):$(git cb)
 	fa = fetch --all
 	
 	# Status
@@ -59,25 +70,21 @@
 	cp = cherry-pick
 	cpn = cherry-pick --no-commit
 	
-	# Branch
-	b = branch
-	bd = branch -v --sort=-committerdate
-	bdd = branch -v --sort=committerdate
-	br = branch -m
-	bdel = branch -d
-	bdelf = branch -D
-	bdelrem = !git push origin --delete 
-
 	# Reset
 	r = reset
 	rs = reset --soft
 	rh = reset --hard
+	rs1 = reset --soft HEAD~1
+	rs2 = reset --soft HEAD~2
+	rh1 = reset --hard HEAD~1
+	rh2 = reset --hard HEAD~2
 
 	# Clean
 	cl = clean -f
 	cld = clean -fd
 	
 	# Stash
+	st = stash
 	stp = stash push
 	sta = stash apply
 	stpop = stash pop
@@ -97,3 +104,11 @@
 	lp = log --graph --oneline --decorate --all
 	l1 = log -1
 	l2 = log -2
+	l1m = log --pretty=format:%s -1
+	l2m = !git log --pretty=format:%s -2 | tail -1;:
+
+	# Custom
+	## Checkout and pull branch
+	cop = !git co $1 && git pl;:
+	## Resolve push conflict for local commit
+	pc1 = !git l1m | xsel --clipboard --input && git rs1 && git stp && git pl && git sta && git acm "$(xsel --clipboard --output)" && git p;:
