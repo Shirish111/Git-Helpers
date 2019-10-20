@@ -39,11 +39,14 @@
 	d = diff
 	dc = diff --cached
 	df = diff --name-only
+	dcf = diff --cached --name-only
 	
 	# push
 	p = !git push origin $(git rev-parse --abbrev-ref HEAD):$(git rev-parse --abbrev-ref HEAD)
+	pf = !git push origin -f $(git rev-parse --abbrev-ref HEAD):$(git rev-parse --abbrev-ref HEAD)
 	pa = push --all
 	pl = !git pull origin $(git rev-parse --abbrev-ref HEAD):$(git rev-parse --abbrev-ref HEAD)
+	plf = !git pull origin -f $(git rev-parse --abbrev-ref HEAD):$(git rev-parse --abbrev-ref HEAD)
 	
 	# fetch
 	f = !git fetch origin $(git rev-parse --abbrev-ref HEAD):$(git rev-parse --abbrev-ref HEAD)
@@ -81,6 +84,16 @@
 	sts = stash show -p
 	stsf = stash show
 	stl = stash list
+	std = stash drop
 
 	# Reflog
 	rf = reflog
+
+	# log
+	l = log
+	la = log --all
+	lf = log -p
+	laf = log --all -p
+	lp = log --graph --oneline --decorate --all
+	l1 = log -1
+	l2 = log -2
