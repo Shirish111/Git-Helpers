@@ -11,6 +11,7 @@
 [alias]
 	# Add
 	a = add
+	ad = add .
 
 	# Branch
 	b = branch
@@ -45,6 +46,10 @@
 	aca = commit --amend -a
 	acam = commit --amend -am
 	cem = commit --allow-empty -m
+	cn = commit --no-edit
+	acn = commit --no-edit
+	acan = commit --amend -a --no-edit
+	can = commit --amend --no-edit
 	
 	# Diff
 	d = diff
@@ -70,6 +75,7 @@
 	cp = cherry-pick
 	cpn = cherry-pick --no-commit
 	
+
 	# Reset
 	r = reset
 	rs = reset --soft
@@ -78,6 +84,8 @@
 	rs2 = reset --soft HEAD~2
 	rh1 = reset --hard HEAD~1
 	rh2 = reset --hard HEAD~2
+
+
 
 	# Clean
 	cl = clean -f
