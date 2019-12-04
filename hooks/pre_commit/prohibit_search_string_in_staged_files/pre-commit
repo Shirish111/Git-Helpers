@@ -1,0 +1,53 @@
+#!/bin/bash
+#
+# This script searches for the occurrence of SEARCH_STRING in the staged files
+# and exits with an error on success
+
+red_text() {
+    echo "\e[31m$1\e[0m"
+}
+
+green_text() {
+    echo "\e[32m$1\e[0m"
+}
+
+white_text() {
+    echo "\e[97m$1\e[0m"
+}
+
+log_error() {
+    echo -e $(red_text "ERROR: ")$(white_text "$1")
+}
+
+log_info() {
+    echo -e $(green_text "INFO: ")$(white_text "$1")
+}
+
+exit_on_error() {
+    if [[ "$?" == "0" ]]
+    then
+	log_error "$1"
+	exit 1
+    fi
+}
+
+SEARCH_STRING="byebug"
+INFO_MSG="Checking ${SEARCH_STRING}..."
+ERROR_MSG="Please remove ${SEARCH_STRING} before committing"
+
+run_script() {
+    log_info "$INFO_MSG"
+
+    staged_files=($(git diff --cached --name-only))
+
+    # Print file name if length of staged_files is 1
+    if [[ "${#staged_files[@]}" == "1" ]]
+    then
+	echo -e $(green_text "$staged_files")
+    fi
+    ag --ruby --filename --color "$SEARCH_STRING" ${staged_files[@]}
+
+    exit_on_error "$ERROR_MSG"
+}
+
+run_script
