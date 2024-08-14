@@ -58,7 +58,12 @@
 	dcf = diff --cached --name-only
 	d1 = diff HEAD~1 HEAD
 	d2 = diff HEAD~2 HEAD~1
-
+	d3 = diff HEAD~3 HEAD~2
+	d4 = diff HEAD~4 HEAD~3
+	d5 = diff HEAD~5 HEAD~4
+	d6 = diff HEAD~6 HEAD~5
+	d7 = diff HEAD~7 HEAD~6
+	d8 = diff HEAD~8 HEAD~7
 
 
 	# push
@@ -67,18 +72,17 @@
 	pa = push --all
 	pl = !git pull origin $(git cb):$(git cb)
 	plf = !git pull origin -f $(git cb):$(git cb)
-	
+
 	# fetch
 	f = !git fetch origin $(git cb):$(git cb)
 	fa = fetch --all
-	
+
 	# Status
 	s = status
-	
+
 	# Cherry pick
 	cp = cherry-pick
 	cpn = cherry-pick --no-commit
-	
 
 	# Reset
 	r = reset
@@ -94,7 +98,7 @@
 	# Clean
 	cl = clean -f
 	cld = clean -fd
-	
+
 	# Stash
 	st = stash
 	stp = stash push
@@ -116,6 +120,8 @@
 	lp = log --graph --oneline --decorate --all
 	l1 = log -1
 	l2 = log -2
+	l3 = log -3
+	l4 = log -4
 	l1m = log --pretty=format:%s -1
 	l2m = !git log --pretty=format:%s -2 | tail -1;:
 
