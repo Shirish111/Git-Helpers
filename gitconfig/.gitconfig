@@ -12,11 +12,11 @@
 	# Add
 	a = add
 	ad = add .
+	au = add -u .
 
 	# Branch
 	b = branch
 	bd = branch -v --sort=-committerdate
-	bdd = branch -v --sort=committerdate
 	br = branch -m
 	bdel = branch -d
 	bdelf = branch -D
@@ -34,7 +34,7 @@
 	ms = merge --squash
 	ma = merge --abort
 	mnn = merge --no-ff --no-commit
-	
+
 	# Commit
 	c = commit
 	ac = commit -a
@@ -50,13 +50,17 @@
 	acn = commit --no-edit
 	acan = commit --amend -a --no-edit
 	can = commit --amend --no-edit
-	
+
 	# Diff
 	d = diff
 	dc = diff --cached
 	df = diff --name-only
 	dcf = diff --cached --name-only
-	
+	d1 = diff HEAD~1 HEAD
+	d2 = diff HEAD~2 HEAD~1
+
+
+
 	# push
 	p = !git push origin $(git cb):$(git cb)
 	pf = !git push origin -f $(git cb):$(git cb)
