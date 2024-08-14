@@ -26,8 +26,8 @@ log_info() {
 exit_on_error() {
     if [[ "$?" == "0" ]]
     then
-	log_error "$1"
-	exit 1
+	      log_error "$1"
+	      exit 1
     fi
 }
 
@@ -43,7 +43,7 @@ run_script() {
     # Print file name if length of staged_files is 1
     if [[ "${#staged_files[@]}" == "1" ]]
     then
-	echo -e $(green_text "$staged_files")
+        echo -e $(green_text "$staged_files")
     fi
     ag --ruby --filename --color "$SEARCH_STRING" ${staged_files[@]}
 
